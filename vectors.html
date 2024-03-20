@@ -1,0 +1,121 @@
+<html>
+    <head></head>
+    <body onload="setvectors()">
+        <h1>Calcolo e visualizzazione vettori</h1>
+        <h3>Cristiano Bozza - Università di Salerno</h3>
+        <canvas id="threejscanvas" style="border-radius: 16px; border-color: navy; border-style: solid; border-width: 2px; height:75vh; width:75vw"></canvas>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+<script>
+
+var scene = new THREE.Scene();
+
+var a = [1,0,0];
+var b = [0,1,0];
+
+const aspect = window.innerWidth / window.innerHeight;
+const d = 5;
+camera = new THREE.OrthographicCamera( - d * aspect, d * aspect, d, - d, 1, 1000 );
+camera.position.set( 10, 5, 5 );
+camera.up.set(0,0,1)
+camera.lookAt(0,0,0 ); 
+// Crea un renderer
+var optc = {antialias:true, canvas: document.getElementById("threejscanvas")};
+var renderer = new THREE.WebGLRenderer(optc);
+renderer.setSize(window.innerWidth *0.6, window.innerHeight *0.6);
+
+// Lunghezza del vettore
+var length = 3;
+
+scene.background = new THREE.Color( 0xffffff );
+
+// Creazione del vettore visibile
+scene.add(new THREE.ArrowHelper(new THREE.Vector3(1, 0, 0), new THREE.Vector3(0, 0, 0), length, 0xAA0000));
+scene.add(new THREE.ArrowHelper(new THREE.Vector3(0, 1, 0), new THREE.Vector3(0, 0, 0), length, 0x00AA00));
+scene.add(new THREE.ArrowHelper(new THREE.Vector3(0, 0, 1), new THREE.Vector3(0, 0, 0), length, 0x0000AA));
+
+var arrowA = new THREE.ArrowHelper(new THREE.Vector3(a[0], a[1], a[2]), new THREE.Vector3(0, 0, 0), 5, 0x000000);
+var arrowB = new THREE.ArrowHelper(new THREE.Vector3(b[0], b[1], b[2]), new THREE.Vector3(0, 0, 0), 5, 0x000000);
+var arrowApB = new THREE.ArrowHelper(new THREE.Vector3(0, 0, 0), new THREE.Vector3(0, 0, 0), 0, 0xCCCC00);
+var arrowAmB = new THREE.ArrowHelper(new THREE.Vector3(0, 0, 0), new THREE.Vector3(0, 0, 0), 0, 0xCC00CC);
+var arrowAvB = new THREE.ArrowHelper(new THREE.Vector3(0, 0, 0), new THREE.Vector3(0, 0, 0), 0, 0x00CCCC);
+scene.add(arrowA);
+scene.add(arrowB);
+scene.add(arrowApB);
+scene.add(arrowAmB);
+scene.add(arrowAvB);
+
+function setArrow(arr, v)
+{
+    arr.setDirection(new THREE.Vector3(v[0], v[1], v[2]). normalize());
+    arr.setLength(Math.sqrt(v[0]*v[0] + v[1]*v[1] + v[2]*v[2]));
+}
+
+function setvectors()
+{
+    try
+    {
+        a[0] = parseFloat(document.getElementById("ax").value);
+        a[1] = parseFloat(document.getElementById("ay").value);
+        a[2] = parseFloat(document.getElementById("az").value);
+        setArrow(arrowA, a);
+    }
+    catch (ea)
+    {
+        alert("Errore nel vettore a: " + ea);
+        return;
+    }
+    try
+    {
+        b[0] = parseFloat(document.getElementById("bx").value);
+        b[1] = parseFloat(document.getElementById("by").value);
+        b[2] = parseFloat(document.getElementById("bz").value);
+        setArrow(arrowB, b);
+    }
+    catch (eb)
+    {
+        alert("Errore nel vettore b");
+        return;
+    }
+    let apb = [a[0] + b[0], a[1] + b[1], a[2] + b[2]];
+    setArrow(arrowApB, apb);
+    document.getElementById("abx").innerText = apb[0].toString();
+    document.getElementById("aby").innerText = apb[1].toString();
+    document.getElementById("abz").innerText = apb[2].toString();
+    let amb = [a[0] - b[0], a[1] - b[1], a[2] - b[2]];
+    setArrow(arrowAmB, amb);
+    document.getElementById("bax").innerText = amb[0].toString();
+    document.getElementById("bay").innerText = amb[1].toString();
+    document.getElementById("baz").innerText = amb[2].toString();
+
+    let ab = a[0] * b[0] + a[1] * b[1] + a[2] * b[2];
+    document.getElementById("ab").innerText = ab.toString();
+    let avb = [a[1] * b[2] - a[2] * b[1], a[2] * b[0] - a[0] * b[2], a[0] * b[1] - a[1] * b[0]];
+    document.getElementById("avbx").innerText = avb[0].toString();
+    document.getElementById("avby").innerText = avb[1].toString();
+    document.getElementById("avbz").innerText = avb[2].toString();
+    setArrow(arrowAvB, avb);
+
+    render();
+}
+
+ // Funzione di rendering
+ function render() {
+            renderer.render(scene, camera);
+        }
+
+        // Richiama la funzione di rendering
+        render();
+        </script>
+        <table>
+            <tr><th>Vettore</th><th>i</th><th>j</th><th>k</th></tr>
+            <tr><th>a</th><td><input type="text" onchange="setvectors()" id="ax" value="1"/></td><td><input type="text" onchange="setvectors()" id="ay" value="0" /></td><td><input type="text" onchange="setvectors()" id="az" value="0" /></td></tr>
+            <tr><th>b</th><td><input type="text" onchange="setvectors()" id="bx" value="0" /></td><td><input type="text" onchange="setvectors()" id="by" value="1" /></td><td><input type="text" onchange="setvectors()" id="bz" value="0" /></td></tr>
+            <tr><th style="color:#CCCC00">a + b</th><td><span id="abx"></span></td><td><span id="aby"></span></td><td><span id="abz"></span></td></tr>
+            <tr><th style="color:#CC00CC">a - b</th><td><span id="bax"></span></td><td><span id="bay"></span></td><td><span id="baz"></span></td></tr>
+            <tr><th>a &dot; b</th><td><span id="ab"></span></td></tr>
+            <tr><th style="color:#00CCCC">a &times; b</th><td><span id="avbx"></span></td><td><span id="avby"></span></td><td><span id="avbz"></span></td></tr>
+        </table>        
+    </body>
+</html>
