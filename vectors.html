@@ -31,12 +31,12 @@ var length = 3;
 scene.background = new THREE.Color( 0xffffff );
 
 // Creazione del vettore visibile
-scene.add(new THREE.ArrowHelper(new THREE.Vector3(1, 0, 0), new THREE.Vector3(0, 0, 0), length, 0xAA0000));
-scene.add(new THREE.ArrowHelper(new THREE.Vector3(0, 1, 0), new THREE.Vector3(0, 0, 0), length, 0x00AA00));
-scene.add(new THREE.ArrowHelper(new THREE.Vector3(0, 0, 1), new THREE.Vector3(0, 0, 0), length, 0x0000AA));
+scene.add(new THREE.ArrowHelper(new THREE.Vector3(1, 0, 0), new THREE.Vector3(0, 0, 0), length, 0x999999));
+scene.add(new THREE.ArrowHelper(new THREE.Vector3(0, 1, 0), new THREE.Vector3(0, 0, 0), length, 0x999999));
+scene.add(new THREE.ArrowHelper(new THREE.Vector3(0, 0, 1), new THREE.Vector3(0, 0, 0), length, 0x999999));
 
-var arrowA = new THREE.ArrowHelper(new THREE.Vector3(a[0], a[1], a[2]), new THREE.Vector3(0, 0, 0), 5, 0x000000);
-var arrowB = new THREE.ArrowHelper(new THREE.Vector3(b[0], b[1], b[2]), new THREE.Vector3(0, 0, 0), 5, 0x000000);
+var arrowA = new THREE.ArrowHelper(new THREE.Vector3(a[0], a[1], a[2]), new THREE.Vector3(0, 0, 0), 5, 0xCC0000);
+var arrowB = new THREE.ArrowHelper(new THREE.Vector3(b[0], b[1], b[2]), new THREE.Vector3(0, 0, 0), 5, 0x0000CC);
 var arrowApB = new THREE.ArrowHelper(new THREE.Vector3(0, 0, 0), new THREE.Vector3(0, 0, 0), 0, 0xCCCC00);
 var arrowAmB = new THREE.ArrowHelper(new THREE.Vector3(0, 0, 0), new THREE.Vector3(0, 0, 0), 0, 0xCC00CC);
 var arrowAvB = new THREE.ArrowHelper(new THREE.Vector3(0, 0, 0), new THREE.Vector3(0, 0, 0), 0, 0x00CCCC);
@@ -110,8 +110,8 @@ function setvectors()
         </script>
         <table>
             <tr><th>Vettore</th><th>i</th><th>j</th><th>k</th></tr>
-            <tr><th>a</th><td><input type="text" onchange="setvectors()" id="ax" value="1"/></td><td><input type="text" onchange="setvectors()" id="ay" value="0" /></td><td><input type="text" onchange="setvectors()" id="az" value="0" /></td></tr>
-            <tr><th>b</th><td><input type="text" onchange="setvectors()" id="bx" value="0" /></td><td><input type="text" onchange="setvectors()" id="by" value="1" /></td><td><input type="text" onchange="setvectors()" id="bz" value="0" /></td></tr>
+            <tr><th style="color:#CC0000">a</th><td><input type="text" style="width:40px" onchange="setvectors()" id="ax" value="1"/></td><td><input type="text" style="width:40px" onchange="setvectors()" id="ay" value="0" /></td><td><input type="text" style="width:40px" onchange="setvectors()" id="az" value="0" /></td></tr>
+            <tr><th style="color:#0000CC">b</th><td><input type="text" style="width:40px" onchange="setvectors()" id="bx" value="0" /></td><td><input type="text" style="width:40px" onchange="setvectors()" id="by" value="1" /></td><td><input type="text" style="width:40px" onchange="setvectors()" id="bz" value="0" /></td></tr>
             <tr><th style="color:#CCCC00">a + b</th><td><span id="abx"></span></td><td><span id="aby"></span></td><td><span id="abz"></span></td></tr>
             <tr><th style="color:#CC00CC">a - b</th><td><span id="bax"></span></td><td><span id="bay"></span></td><td><span id="baz"></span></td></tr>
             <tr><th>a &dot; b</th><td><span id="ab"></span></td></tr>
