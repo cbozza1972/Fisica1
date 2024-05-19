@@ -112,5 +112,5 @@ htmlstr = htmlstr + ' <hr />'
 htmlstr = htmlstr + ' <h2>Voto complessivo <input type="text" id="total" readonly></input> <input type="button" value="Fine" onclick="stopexam()"></input></h2>'
 htmlstr = htmlstr + '</body></html>'
 
-with open('./oral-exam-support/oes.htm', 'wt') as fout:
+with open('./oral-exam-support/oes.html', 'wt') as fout:
     fout.write(htmlstr)
