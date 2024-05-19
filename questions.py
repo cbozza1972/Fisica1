@@ -1,4 +1,5 @@
 import pdfextract.pdfextract as pdfx
+import json
 
 mainfile = '/tmp/myfile.pdf'
 
@@ -68,7 +69,48 @@ questiongroups = \
 ]} \
 ] 
 
-for qg in questiongroups:
-    for q in qg["questions"]:
-        print(q["id"])
-        pdfx.extractpdf(mainfile, '/tmp/Q_' + str(q["id"]) + '.pdf', q["pages"])
+#for qg in questiongroups:
+#    for q in qg["questions"]:
+#        print(q["id"])
+#        pdfx.extractpdf(mainfile, './oral-exam-tool/Q_' + str(q["id"]) + '.pdf', q["pages"])
+
+htmlstr = '<html><head><title>Supporto Esame Orale Fisica 1</title></head><body>'
+htmlstr = htmlstr + '<script>\n' + \
+'const qg = ' + json.dumps(questiongroups) + ';\n\n' + \
+'function generatequestion(g) {\n' + \
+'  let gro = qg[g - 1];\n' + \
+'  let qr = Math.floor(Math.random() * gro["questions"].length);\n' + \
+'  document.getElementById("Q_" + g + "_text").innerHTML = "<a target=\\"_blank\\" href=\\"Q_" + gro["questions"][qr]["id"] + ".pdf\\">" + gro["questions"][qr]["id"] + ": " + gro["questions"][qr]["text"] + "</a>";\n' + \
+'  document.getElementById("Q_" + g + "_grade").value = "";\n' + \
+'}\n\n' + \
+'function startexam() {\n' + \
+' document.getElementById("name").readOnly = true; let wr = document.getElementById("writtenexam"); wr.readOnly = false; wr.value = ""; document.getElementById("total").value = "";\n' + \
+' ["1","2","3"].forEach(la => { document.getElementById("Q_" + la + "_text").innerHtml = ""; let lag = document.getElementById("Q_" + la + "_grade"); lag.readOnly = false; lag.value = ""; });\n ' + \
+'}\n\n' + \
+'function ongradechange() {\n' + \
+' let gw = parseInt(document.getElementById("writtenexam").value); ' + \
+' let go = ["1","2","3"].map(q => parseInt(document.getElementById("Q_" + q + "_grade").value)).reduce((ps, acc) => ps + acc, 0); ' + \
+' let gavg = Math.round(gw + go) / 2;\n' + \
+' document.getElementById("total").value = gavg;\n' + \
+'}\n\n' + \
+'function stopexam() {\n' + \
+' if (confirm("Sei sicuro/a di voler terminare l''esame?") == false) return;\n' + \
+' document.getElementById("name").readOnly = false; let wr = document.getElementById("writtenexam"); wr.readOnly = true; document.getElementById("total").readOnly = true;\n' + \
+' ["1","2","3"].forEach(la => { document.getElementById("Q_" + la + "_text").readOnly = true; });\n ' + \
+'}\n\n' + \
+'</script>'
+htmlstr = htmlstr + ' <h1>Supporto Esame Orale Fisica 1</h1>'
+htmlstr = htmlstr + ' <h2>Candidato/a <input type="text" id="name"></input> <input type="button" value="Inizia" onclick="startexam()"></input></h2>'
+htmlstr = htmlstr + ' <h2>Voto scritto <input readonly type="text" id="writtenexam" onchange="ongradechange()"></input></h2>'
+htmlstr = htmlstr + ' <hr />'
+htmlstr = htmlstr + ' <div id="Q_1"><p><input type="button" onclick="generatequestion(1)" value="Genera domanda 1" /></p><p id="Q_1_text"></p><p>Voto: <input readonly type="number" id="Q_1_grade" onchange="ongradechange()"></input></p></div>'
+htmlstr = htmlstr + ' <hr />'
+htmlstr = htmlstr + ' <div id="Q_2"><p><input type="button" onclick="generatequestion(2)" value="Genera domanda 2" /></p><p id="Q_2_text"></p><p>Voto: <input readonly type="number" id="Q_2_grade" onchange="ongradechange()"></input></p></div>'
+htmlstr = htmlstr + ' <hr />'
+htmlstr = htmlstr + ' <div id="Q_3"><p><input type="button" onclick="generatequestion(3)" value="Genera domanda 3" /></p><p id="Q_3_text"></p><p>Voto: <input readonly type="number" id="Q_3_grade" onchange="ongradechange()"></input></p></div>'
+htmlstr = htmlstr + ' <hr />'
+htmlstr = htmlstr + ' <h2>Voto complessivo <input type="text" id="total" readonly></input> <input type="button" value="Fine" onclick="stopexam()"></input></h2>'
+htmlstr = htmlstr + '</body></html>'
+
+with open('./oral-exam-support/oes.htm', 'wt') as fout:
+    fout.write(htmlstr)
