@@ -19,9 +19,9 @@ function ongradechange() {
 }
 
 function stopexam() {
- if (confirm("Sei sicuro/a di voler terminare lesame?") == false) return;
+ if (confirm("Sei sicuro/a di voler terminare l'esame?") == false) return;
  document.getElementById("name").readOnly = false; let wr = document.getElementById("writtenexam"); wr.readOnly = true; document.getElementById("total").readOnly = true;
- ["1","2","3"].forEach(la => { document.getElementById("Q_" + la + "_text").readOnly = true; });
+ ["1","2","3"].forEach(la => { document.getElementById("Q_" + la + "_grade").readOnly = true; });
  }
 
 </script> <h1>Supporto Esame Orale Fisica 1</h1> <h2>Candidato/a <input type="text" id="name"></input> <input type="button" value="Inizia" onclick="startexam()"></input></h2> <h2>Voto scritto <input readonly type="text" id="writtenexam" onchange="ongradechange()"></input></h2> <hr /> <div id="Q_1"><p><input type="button" onclick="generatequestion(1)" value="Genera domanda 1" /></p><p id="Q_1_text"></p><p>Voto: <input readonly type="number" id="Q_1_grade" onchange="ongradechange()"></input></p></div> <hr /> <div id="Q_2"><p><input type="button" onclick="generatequestion(2)" value="Genera domanda 2" /></p><p id="Q_2_text"></p><p>Voto: <input readonly type="number" id="Q_2_grade" onchange="ongradechange()"></input></p></div> <hr /> <div id="Q_3"><p><input type="button" onclick="generatequestion(3)" value="Genera domanda 3" /></p><p id="Q_3_text"></p><p>Voto: <input readonly type="number" id="Q_3_grade" onchange="ongradechange()"></input></p></div> <hr /> <h2>Voto complessivo <input type="text" id="total" readonly></input> <input type="button" value="Fine" onclick="stopexam()"></input></h2></body></html>

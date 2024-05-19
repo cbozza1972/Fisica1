@@ -94,9 +94,9 @@ htmlstr = htmlstr + '<script>\n' + \
 ' document.getElementById("total").value = gavg;\n' + \
 '}\n\n' + \
 'function stopexam() {\n' + \
-' if (confirm("Sei sicuro/a di voler terminare l''esame?") == false) return;\n' + \
+' if (confirm("Sei sicuro/a di voler terminare l\'esame?") == false) return;\n' + \
 ' document.getElementById("name").readOnly = false; let wr = document.getElementById("writtenexam"); wr.readOnly = true; document.getElementById("total").readOnly = true;\n' + \
-' ["1","2","3"].forEach(la => { document.getElementById("Q_" + la + "_text").readOnly = true; });\n ' + \
+' ["1","2","3"].forEach(la => { document.getElementById("Q_" + la + "_grade").readOnly = true; });\n ' + \
 '}\n\n' + \
 '</script>'
 htmlstr = htmlstr + ' <h1>Supporto Esame Orale Fisica 1</h1>'
