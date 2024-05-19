@@ -1,5 +1,6 @@
 import pdfextract.pdfextract as pdfx
 import json
+import sys
 
 mainfile = '/tmp/myfile.pdf'
 
@@ -69,10 +70,11 @@ questiongroups = \
 ]} \
 ] 
 
-for qg in questiongroups:
-    for q in qg["questions"]:
-        print(q["id"])
-        pdfx.extractpdf(mainfile, './oral-exam-support/Q_' + str(q["id"]) + '.pdf', q["pages"])
+if len(sys.argv) < 2 or sys.argv[1] != '--skippdf':
+    for qg in questiongroups:
+        for q in qg["questions"]:
+            print(q["id"])
+            pdfx.extractpdf(mainfile, './oral-exam-support/Q_' + str(q["id"]) + '.pdf', q["pages"])
 
 htmlstr = '<html><head><meta http-equiv="Expires" content="0"><title>Supporto Esame Orale Fisica 1</title></head><body>'
 htmlstr = htmlstr + '<script>\n' + \
@@ -103,6 +105,7 @@ htmlstr = htmlstr + '<script>\n' + \
 '}\n\n' + \
 '</script>'
 htmlstr = htmlstr + ' <h1>Supporto Esame Orale Fisica 1</h1>'
+htmlstr = htmlstr + ' <p>Questa pagina non carica alcuna informazione su alcun server e gira interamente nel PC dell\'utente. Nessun dato sar&agrave; comunicato o salvato.</p>'
 htmlstr = htmlstr + ' <h2>Candidato/a <input type="text" id="name"></input> <input type="button" value="Inizia" onclick="startexam()"></input></h2>'
 htmlstr = htmlstr + ' <h2>Voto scritto <input readonly type="text" id="writtenexam" onchange="ongradechange()"></input></h2>'
 htmlstr = htmlstr + ' <hr />'
@@ -120,7 +123,7 @@ htmlstr = htmlstr + '</body></html>'
 with open('./oral-exam-support/oes.html', 'wt') as fout:
     fout.write(htmlstr)
 
-docstr = '<html><body><style>body { font-family: Times New Roman; } h1,h2,h3,h4 { font-weight: normal; } h4 { margin-bottom: 0px} </style><h1>Domandario per la prova orale di Fisica 1 per Scienze Ambientali</h1><h3>Anno Accademico 2023/24</h3>'
+docstr = '<html><head><meta http-equiv="Expires" content="0"><title>Domandario Fisica 1 2023-24</title></head><body><style>body { font-family: Times New Roman; } h1,h2,h3,h4 { font-weight: normal; } h4 { margin-bottom: 0px} </style><h1>Domandario per la prova orale di Fisica 1 per Scienze Ambientali</h1><h3>Anno Accademico 2023/24</h3>'
 for qg in questiongroups:    
     docstr = docstr + '<div>'   
     docstr = docstr + '<h4>' + qg["group"] + '</h4>'
