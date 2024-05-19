@@ -69,10 +69,10 @@ questiongroups = \
 ]} \
 ] 
 
-#for qg in questiongroups:
-#    for q in qg["questions"]:
-#        print(q["id"])
-#        pdfx.extractpdf(mainfile, './oral-exam-tool/Q_' + str(q["id"]) + '.pdf', q["pages"])
+for qg in questiongroups:
+    for q in qg["questions"]:
+        print(q["id"])
+        pdfx.extractpdf(mainfile, './oral-exam-support/Q_' + str(q["id"]) + '.pdf', q["pages"])
 
 htmlstr = '<html><head><meta http-equiv="Expires" content="0"><title>Supporto Esame Orale Fisica 1</title></head><body>'
 htmlstr = htmlstr + '<script>\n' + \
@@ -119,3 +119,14 @@ htmlstr = htmlstr + '</body></html>'
 
 with open('./oral-exam-support/oes.html', 'wt') as fout:
     fout.write(htmlstr)
+
+docstr = '<html><body><style>body { font-family: Times New Roman; } h1,h2,h3,h4 { font-weight: normal; } h4 { margin-bottom: 0px} </style><h1>Domandario per la prova orale di Fisica 1 per Scienze Ambientali</h1><h3>Anno Accademico 2023/24</h3>'
+for qg in questiongroups:    
+    docstr = docstr + '<div>'   
+    docstr = docstr + '<h4>' + qg["group"] + '</h4>'
+    for q in qg["questions"]:
+        docstr = docstr + '<li>' + str(q["id"]) + '. <a target="_blank" href="https://cbozza1972.github.io/Fisica1/oral-exam-support/Q_' + str(q["id"]) + '.pdf">' + q["text"] + '</a></li>'
+    docstr = docstr + '</div>'   
+docstr = docstr + '</body></html>'
+with open('./domandario-2023-2024.html', 'wt') as fout:
+    fout.write(docstr)
