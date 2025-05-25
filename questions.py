@@ -7,20 +7,20 @@ mainfile = '/tmp/myfile.pdf'
 questiongroups = \
 [ \
 { "group":"Primo gruppo", "questions" : [ \
-{ "id":1, "text":"Misure ed errori (definizione, scrittura, combinazione e propagazione nei calcoli)", "pages":[11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,25,27,28] }, \
-{ "id":2, "text":"Vettori: definizione, prodotto per scalari, somma, prodotto scalare", "pages":[31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49] }, \
-{ "id":3, "text":"Vettori: prodotto vettoriale e proprietà, prodotto misto, momento di un vettore, coppie di vettori", "pages":[50,51,53,53,54,55,56,57] }, \
-{ "id":4, "text":"Ascissa curvilinea, equazioni della traiettoria, legge oraria, velocità, accelerazione, raggio di curvatura", "pages":[58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79] }, \
-{ "id":5, "text":"Moto rettilineo uniforme e uniformemente accelerato", "pages":[80,81,82,83,84,85,86,87,88] }, \
-{ "id":6, "text":"Moto del proiettile", "pages":[89,90,91,81,82,83,85,86,87,88] }, \
-{ "id":7, "text":"Moto circolare uniforme e uniformemente accelerato", "pages":[92,93,94,95,96,97,98,99,100,101,102,103,104,105,106,107] }, \
-{ "id":8, "text":"Moto armonico", "pages":[108,109,110,111,112,113,114,115,116,117] }, \
-{ "id":9, "text":"Moti relativi", "pages":[118,119,120,121,122,123,124,125,126,127,128,129,130,131,132,133,134,135,136,137,138,139,140] } \
+{ "id":1, "text":"Misure ed errori (definizione, scrittura, combinazione e propagazione nei calcoli)", "pages":[11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29] }, \
+{ "id":2, "text":"Vettori: definizione, prodotto per scalari, somma, prodotto scalare", "pages":[33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54] }, \
+{ "id":3, "text":"Vettori: prodotto vettoriale e proprietà, prodotto misto, momento di un vettore, coppie di vettori", "pages":[55,56,57,58,59,60,61,62] }, \
+{ "id":4, "text":"Ascissa curvilinea, equazioni della traiettoria, legge oraria, velocità, accelerazione, raggio di curvatura", "pages":[64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84] }, \
+{ "id":5, "text":"Moto rettilineo uniforme e uniformemente accelerato", "pages":[85,86,87,88,89,90,91,92,93] }, \
+{ "id":6, "text":"Moto del proiettile", "pages":[94,95,96] }, \
+{ "id":7, "text":"Moto circolare uniforme e uniformemente accelerato", "pages":[97,98,99,100,101,102,103,104,105,106,107,108,109,110,111,112] }, \
+{ "id":8, "text":"Moto armonico", "pages":[113,114,115,116,117,118,119,120,121,122] }, \
+{ "id":9, "text":"Moti relativi", "pages":[123,124,125,126,127,128,129,130,131,132,133,134,135,136,137,138,139,140,141,142,143,144,145] } \
 ]}, \
 \
 { "group":"Secondo gruppo", "questions" : [ \
-{ "id":10, "text":"Forza peso (moto, lavoro ed energia potenziale)", "pages":[153,154,155,156,145,146,147,148,545,85,86,87,88,201,203,206] }, \
-{ "id":11, "text":"Forza elastica e legge di Hooke (moto, lavoro ed energia potenziale)", "pages":[157,158,159,160,161,162,163,164,201,202,204,205] }, \
+{ "id":10, "text":"Forza peso (moto, lavoro ed energia potenziale)", "pages":[158,159,160,161,208] }, \
+{ "id":11, "text":"Forza elastica e legge di Hooke (moto, lavoro ed energia potenziale)", "pages":[162,163,164,165,166,167,168,169,170,171,172,173,174,206,207,208,209,210,211,212,213] }, \
 { "id":12, "text":"Resistenza di fluidi in regime viscoso e turbolento", "pages":[170,171,172,173,174,274,275,276,277,278,410,411,414] }, \
 { "id":13, "text":"Attrito statico, dinamico, volvente", "pages":[217,218,219,220,221,272,273] }, \
 { "id":14, "text":"Oscillatore armonico libero (con dimostrazioni) e smorzato senza forzante (senza dimostrazioni)", "pages":[162,163,164,222,223,224,225,226,227,228,229,230,231] }, \
